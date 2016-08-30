@@ -1,0 +1,47 @@
+###tmp files###
+#.DS_Store
+#*.swp
+#*~
+#\#*#
+#.#*
+#\#*
+#*fasl
+#*aux
+#*log
+
+###java###
+target
+*.class
+#*.jar
+#*.war
+#*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+#hs_err_pid*
+
+###eclipse###
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# Eclipse Core
+.project
+
+# CDT-specific
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# sbteclipse plugin
+.target
+

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1457354377" author="mlubanski">
+		<createTable tableName="QUESTIONNAIRE">
+			<column name="ID" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="NAME" type="varchar(100)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="DATE" type="date" defaultValueComputed="now()">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="145735437-2" author="mlubanski">
+		<createTable tableName="QUESTION">
+			<column name="ID" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="QUESTIONNAIRE_ID" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="TEXT" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="SEQUENCE" type="tinyint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addUniqueConstraint columnNames="QUESTIONNAIRE_ID, SEQUENCE"
+			tableName="QUESTION" />
+		<addForeignKeyConstraint baseColumnNames="QUESTIONNAIRE_ID"
+			baseTableName="QUESTION" constraintName="QUESTION_QUESTIONNAIRE_FK"
+			onDelete="RESTRICT" onUpdate="CASCADE" referencedColumnNames="ID"
+			referencedTableName="QUESTIONNAIRE" />
+	</changeSet>
+
+	<changeSet id="145735437-3" author="mlubanski">
+		<createTable tableName="ANSWER">
+			<column name="ID" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="QUESTION_ID" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="TEXT" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="SEQUENCE" type="tinyint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addUniqueConstraint columnNames="QUESTION_ID, SEQUENCE"
+			tableName="ANSWER" />
+		<addForeignKeyConstraint baseColumnNames="QUESTION_ID"
+			baseTableName="ANSWER" constraintName="ANSWER_QUESTION_FK" onDelete="CASCADE"
+			onUpdate="CASCADE" referencedColumnNames="ID" referencedTableName="QUESTION" />
+	</changeSet>
+
+</databaseChangeLog>
