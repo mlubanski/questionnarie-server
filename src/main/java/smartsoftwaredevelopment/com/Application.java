@@ -24,16 +24,16 @@ public class Application {
   @Bean
   public CommandLineRunner demo(QuestionnaireRepository repository) {
       return (args) -> {
-          Questionnaire questionnaire = new Questionnaire("JUG: Bielsko-Biała 2016");
-          
-          Question question1 = new Question("Jak podoba Ci się JUG?", 1);
-          question1.addAnswer(new Answer("Jest extra", 1));
-          question1.addAnswer(new Answer("Super", 2));
-          question1.addAnswer(new Answer("Od dziś będę używał liquibase :)", 3));
-
-          questionnaire.addQuestion(question1);
-          
-          repository.save(questionnaire);
+//          Questionnaire questionnaire = new Questionnaire("JUG: Bielsko-Biała 2016");
+//          
+//          Question question1 = new Question("Jak podoba Ci się JUG?", 1);
+//          question1.addAnswer(new Answer("Jest extra", 1));
+//          question1.addAnswer(new Answer("Super", 2));
+//          question1.addAnswer(new Answer("Od dziś będę używał liquibase :)", 3));
+//
+//          questionnaire.addQuestion(question1);
+//          
+//          repository.save(questionnaire);
       };
   }
   

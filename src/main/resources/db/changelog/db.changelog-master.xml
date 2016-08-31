@@ -63,5 +63,48 @@
 			baseTableName="ANSWER" constraintName="ANSWER_QUESTION_FK" onDelete="CASCADE"
 			onUpdate="CASCADE" referencedColumnNames="ID" referencedTableName="QUESTION" />
 	</changeSet>
+	
+	<changeSet author="mlubanski" id="1472591162" runOnChange="true" context="dev">
+		<sql>
+			DELETE FROM QUESTIONNAIRE;
+		</sql>
+		<loadData tableName="QUESTIONNAIRE" file="data/questionnaires.csv">
+			<column name="ID" type="NUMERIC" />
+			<column name="NAME" type="STRING" />
+		</loadData>
+		<rollback>
+			DELETE FROM QUESTIONNAIRE;
+		</rollback>
+	</changeSet>
+	
+	<changeSet author="mlubanski" id="1472591162-1" runOnChange="true" context="dev">
+		<sql>
+			DELETE FROM QUESTION;
+		</sql>
+		<loadData tableName="QUESTION" file="data/questions.csv">
+			<column name="ID" type="NUMERIC" />
+			<column name="QUESTIONNAIRE_ID" type="NUMERIC" />
+			<column name="TEXT" type="STRING" />
+			<column name="SEQUENCE" type="NUMERIC" />
+		</loadData>
+		<rollback>
+			DELETE FROM QUESTION;
+		</rollback>
+	</changeSet>
+	
+	<changeSet author="mlubanski" id="1472591162-2" runOnChange="true" context="dev">
+		<sql>
+			DELETE FROM ANSWER;
+		</sql>
+		<loadData tableName="ANSWER" file="data/answers.csv" >
+			<column name="ID" type="NUMERIC" />
+			<column name="QUESTION_ID" type="NUMERIC" />
+			<column name="TEXT" type="STRING" />
+			<column name="SEQUENCE" type="NUMERIC" />
+		</loadData>
+		<rollback>
+			DELETE FROM ANSWER;
+		</rollback>
+	</changeSet>
 
 </databaseChangeLog>
