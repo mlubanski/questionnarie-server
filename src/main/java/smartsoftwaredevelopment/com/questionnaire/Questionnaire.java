@@ -39,7 +39,7 @@ public class Questionnaire {
     private String name;
     
     @Temporal(TemporalType.TIMESTAMP)
-//    @Column(insertable=false)
+    @Column(insertable=false)
     @Getter
     @Setter
     private Date date;
